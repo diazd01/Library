@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- FORM MODAL -->
+    <div class="modal-container">
+        <span class="close-btn">&times;</span>
+        <form class="modal-form">
+            <label class="form-label">Title:</label>
+            <input placeholder="Title of the book" class="title-input" type="text">
+            <label class="form-label">Author:</label>
+            <input placeholder="Name of the Author" class="author-input" type="text">
+            <label class="form-label">Number of pages:</label>
+            <input placeholder="Total Pages" class="pages-input" type="number" min="1">
+            <label class="form-label">Read it?</label>
+            <input type="radio" name="read-radio" id="yes-radio" class="read-input">
+            <h4>Yes</h4>
+            <input type="radio" name="read-radio" id="no-radio" class="read-input">
+            <h4>No</h4>
+            <button type="submit" class="submit-btn">SUBMIT</button>
+        </form>
+    </div>
+    <!-- ADD BOOK BUTTON: -->
+    <div class="add-btn-container">
+        <button class="add-book-btn">ADD TO LIBRARY</button>
+    </div>
+    <!-- TABLE: -->
+    <div class="table-container">
+        <div class="table">
+            <h1 class="title-header">Title</h1>
+            <h1 class="author-header">Author</h1>
+            <h1 class="pages-header">Pages</h1>
+            <h1 class="read-header">Status</h1>
+            <h1 class="action-header">Action</h1>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

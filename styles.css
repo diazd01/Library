@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: 'Montserrat',
+        sans-serif;
+}
+
+.add-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+}
+
+.add-book-btn {
+    background: #4169E1;
+    border: 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    width: 30%;
+    padding: 1em;
+    margin: 2em;
+    color: #F0FFF0;
+}
+
+.add-book-btn:active {
+    background-color: #191970;
+    transform: translateY(4px);
+    color: #F5F5F5;
+}
+
+.add-book-btn:hover,
+.add-book-btn:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #00BFFF;
+}
+
+
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    height: auto;
+    flex-direction: column;
+}
+
+.table {
+    display: grid;
+    width: 70%;
+    border: black 1px solid;
+    grid-template-columns: repeat(2, 1fr) repeat(2, 0.5fr) 0.25fr;
+    grid-template-rows: auto;
+    justify-content: center;
+    text-align: center;
+}
+
+.table h1 {
+    text-transform: uppercase;
+    border: #DCDCDC 1px solid;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    background-color: #AFEEEE;
+    color: #2b2b2b;
+}
+
+.table h3 {
+    text-transform: capitalize;
+    font-size: 1.4rem;
+    border-top: black 1px solid;
+    background-color: white;
+    font-weight: 500;
+}
+
+/* MODAL */
+.modal-container {
+    position: fixed;
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.842);
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+
+}
+
+.modal-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #AFEEEE;
+    height: 60%;
+    width: 40%;
+    flex-direction: column;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    color: #2b2b2b;
+}
+
+.form-label {
+    padding: 1em;
+    font-size: 1.5rem;
+    text-align: left;
+    font-weight: 700;
+}
+
+input {
+    font-size: 1rem;
+    width: 70%;
+    padding: 0.5em;
+    border: 1.4px solid #2c2c2c;
+}
+
+
+.submit-btn {
+    background: #1E90FF;
+    border: 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    width: 40%;
+    padding: 0.5em;
+    margin: 1em;
+}
+
+.submit-btn:active {
+    background-color: #000080;
+    transform: translateY(4px);
+    color: #DCDCDC;
+}
+
+.close-btn {
+    color: #ccc;
+    font-size: 50px;
+    order: 1;
+    margin: 0 0 15em;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #1E90FF;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.read-header, .action-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.readInfo-btn, .delete-btn {
+    border: #2c2c2c 1px solid;
+    height: auto;
+    background-color: #90EE90;
+    color: #2c2c2c;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    text-transform: capitalize;
+    width: 80%;
+}
+
+.delete-btn {
+    background-color: #F5FFFA;
+}
+
+.readInfo-btn:active,
+.delete-btn:active {
+    transform: translateY(4px);
+}
+
+.readInfo-btn:hover,
+.delete-btn:hover {
+    color: #1E90FF;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.notread-btn {
+    border: #2c2c2c 1px solid;
+    height: auto;
+    background-color: #CD5C5C;
+    color: #2c2c2c;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: capitalize;
+    width: 100%;
+}
+
+.notread-btn:active {
+    transform: translateY(4px);
+}
+
+.notread-btn:hover {
+    color: #FFFAFA;
+    text-decoration: none;
+    cursor: pointer;
+}
