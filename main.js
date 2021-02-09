@@ -25,6 +25,10 @@ function Book(title, author, totalPages, read) {
     this.totalPages = totalPages;
     this.read = read;
 }
+
+Book.prototype = {
+    
+};
 /* local storage */
 getLibrary = function () {
     const libraryJSON = localStorage.getItem('myLibrary');
@@ -45,11 +49,13 @@ const myLibrary = getLibrary();
 
 /* functions: */
 addBookToLibrary = function () {
-    const book = new Book(titleInput.value, authorInput.value, pagesInput.value, yesInput.checked);
+    let book = new Book(titleInput.value, authorInput.value, pagesInput.value, yesInput.checked);
     myLibrary.push(book);
+    render(book); 
 }
 
-Book.prototype.render = function () {
+function render (book) {
+  
     let titleInfo = document.createElement('h3');
     let authorInfo = document.createElement('h3');
     let pagesInfo = document.createElement('h3');
@@ -58,21 +64,21 @@ Book.prototype.render = function () {
     removeButton.classList.add('delete-btn');
 
     //make read into a button so it updates if read or not: 
-    if (this.read) {
+    if (book.read) {
         readInfo.classList.add('readInfo-btn');
     }
-    if (!this.read) {
+    if (!book.read) {
         readInfo.classList.add('notread-btn');
     }
     //adding books: 
-    titleHeader.appendChild(titleInfo).textContent = this.title;
-    authorHeader.appendChild(authorInfo).textContent = this.author;
-    pagesHeader.appendChild(pagesInfo).textContent = this.totalPages;
+    titleHeader.appendChild(titleInfo).textContent = book.title;
+    authorHeader.appendChild(authorInfo).textContent = book.author;
+    pagesHeader.appendChild(pagesInfo).textContent = book.totalPages;
     /* tenary op if read or not */
-    this.read ? readHeader.appendChild(readInfo).textContent = 'Read' :
+    book.read ? readHeader.appendChild(readInfo).textContent = 'Read' :
         readHeader.appendChild(readInfo).textContent = 'In progress';
     actionHeader.appendChild(removeButton).textContent = 'delete';
-    removeButton.classList.add(`delete-btn-${myLibrary.indexOf(this)}`);
+    removeButton.classList.add(`delete-btn-${myLibrary.indexOf(book)}`);
     //Deleting books 
     removeButton.addEventListener('click', (e) => {
         titleHeader.removeChild(titleInfo);
@@ -80,15 +86,15 @@ Book.prototype.render = function () {
         pagesHeader.removeChild(pagesInfo);
         readHeader.removeChild(readInfo);
         actionHeader.removeChild(removeButton);
-        myLibrary.splice(myLibrary.indexOf(this), 1);
+        myLibrary.splice(myLibrary.indexOf(book), 1);
         storeLibrary();
     });
     //If read event - change status: 
     readInfo.addEventListener('click', (e) => {
-        this.changeBookStatus(e);
+        changeBookStatus(e, book);
         storeLibrary();
     });
-
+    return book;
 }
 
 
@@ -124,18 +130,18 @@ function clickedOutside(e) {
     }
 }
 
-Book.prototype.changeBookStatus = function (e) {
+function changeBookStatus (e, book) {
 
-    if ((this.read)) {
+    if ((book.read)) {
         e.target.textContent = 'In progress';
         e.target.classList.remove('readInfo-btn');
         e.target.classList.add('notread-btn');
-        this.read = false;
+        book.read = false;
     } else {
         e.target.textContent = 'Read';
         e.target.classList.remove('notread-btn');
         e.target.classList.add('readInfo-btn');
-        this.read = true;
+        book.read = true;
     }
     storeLibrary();
 }
@@ -156,66 +162,17 @@ modalForm.addEventListener('submit', (e) => {
     if (formValidated) {
         closeModal();
         addBookToLibrary();
-        myLibrary[myLibrary.length - 1].render();
         clearValues();
     }
     storeLibrary();
 });
 
-function show() {
-
-    myLibrary.forEach((book) => {
-        let titleInfo = document.createElement('h3');
-        let authorInfo = document.createElement('h3');
-        let pagesInfo = document.createElement('h3');
-        let readInfo = document.createElement('button');
-        let removeButton = document.createElement('button');
-        removeButton.classList.add('delete-btn');
-
-        //make read into a button so it updates if read or not: 
-        if (book.read) {
-            readInfo.classList.add('readInfo-btn');
-        }
-        if (!book.read) {
-            readInfo.classList.add('notread-btn');
-        }
-        //adding books: 
-        titleHeader.appendChild(titleInfo).textContent = book.title;
-        authorHeader.appendChild(authorInfo).textContent = book.author;
-        pagesHeader.appendChild(pagesInfo).textContent = book.totalPages;
-        /* tenary op if read or not */
-        book.read ? readHeader.appendChild(readInfo).textContent = 'Read' :
-            readHeader.appendChild(readInfo).textContent = 'In progress';
-        actionHeader.appendChild(removeButton).textContent = 'delete';
-        removeButton.classList.add(`delete-btn-${myLibrary.indexOf(book)}`);
-        //Deleting books 
-        removeButton.addEventListener('click', (e) => {
-            titleHeader.removeChild(titleInfo);
-            authorHeader.removeChild(authorInfo);
-            pagesHeader.removeChild(pagesInfo);
-            readHeader.removeChild(readInfo);
-            actionHeader.removeChild(removeButton);
-            myLibrary.splice(myLibrary.indexOf(book), 1);
-            storeLibrary();
-        });
-        //If read event - change status: 
-        readInfo.addEventListener('click', (e) => {
-            if ((book.read)) {
-                e.target.textContent = 'In progress';
-                e.target.classList.remove('readInfo-btn');
-                e.target.classList.add('notread-btn');
-                book.read = false;
-            } else {
-                e.target.textContent = 'Read';
-                e.target.classList.remove('notread-btn');
-                e.target.classList.add('readInfo-btn');
-                book.read = true;
-            }
-            storeLibrary();
-        });
+function renderOnRefresh(library) {
+    library.forEach((book) => {
+        render(book);
     });
 }
 
-if (localStorage.getItem('myLibrary')) {
-    show();
+if (localStorage.myLibrary) {
+renderOnRefresh(myLibrary);
 }
