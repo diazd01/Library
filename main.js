@@ -75,8 +75,7 @@ function render (book) {
     authorHeader.appendChild(authorInfo).textContent = book.author;
     pagesHeader.appendChild(pagesInfo).textContent = book.totalPages;
     /* tenary op if read or not */
-    book.read ? readHeader.appendChild(readInfo).textContent = 'Read' :
-        readHeader.appendChild(readInfo).textContent = 'In progress';
+    book.read ? readHeader.appendChild(readInfo).textContent = 'Read' : readHeader.appendChild(readInfo).textContent = 'In progress';
     actionHeader.appendChild(removeButton).textContent = 'delete';
     removeButton.classList.add(`delete-btn-${myLibrary.indexOf(book)}`);
     //Deleting books 
